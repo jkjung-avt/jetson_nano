@@ -17,7 +17,7 @@ sudo apt-get install -y libatlas-base-dev libopenblas-dev
 
 echo "** Download SSD caffe"
 cd $folder
-#git clone https://github.com/weiliu89/caffe.git ssd-caffe
+git clone https://github.com/weiliu89/caffe.git ssd-caffe
 cd ssd-caffe
 git checkout ssd
 
