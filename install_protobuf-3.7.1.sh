@@ -2,9 +2,6 @@
 
 set -e
 
-user="nvidia"
-passwd="nvidia"
-
 folder=${HOME}/src
 mkdir -p $folder
 
