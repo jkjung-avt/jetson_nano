@@ -50,12 +50,12 @@ sudo pip2 install -U protobuf numpy matplotlib
 if [ ! -f /usr/local/cuda/include/cuda_gl_interop.h.bak ]; then
   sudo cp /usr/local/cuda/include/cuda_gl_interop.h /usr/local/cuda/include/cuda_gl_interop.h.bak
 fi
-sudo patch -N /usr/local/cuda/include/cuda_gl_interop.h < opencv/cuda_gl_interop.h.patch
+sudo patch -N /usr/local/cuda/include/cuda_gl_interop.h < opencv/cuda_gl_interop.h.patch && echo "** '/usr/local/cuda/include/cuda_gl_interop.h' appears to be patched already.  Continue..."
 
 echo "** Download opencv-3.4.6"
 cd $folder
 if [ ! -f opencv-3.4.6.zip ]; then
-  curl -L https://github.com/opencv/opencv/archive/3.4.6.zip -o opencv-3.4.6.zip
+  wget https://github.com/opencv/opencv/archive/3.4.6.zip -O opencv-3.4.6.zip
 fi
 if [ -d opencv-3.4.6 ]; then
   echo "** ERROR: opencv-3.4.6 directory already exists"
