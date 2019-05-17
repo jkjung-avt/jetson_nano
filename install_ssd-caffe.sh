@@ -42,6 +42,6 @@ make -j3 all test pycaffe
 
 ./build/tools/caffe time --gpu 0 --model ./models/bvlc_alexnet/deploy.prototxt
 
-PYTHONPATH=`pwd`/python python3 -c 'import caffe; print('caffe version: %s' % caffe.__version__)'
+PYTHONPATH=`pwd`/python python3 -c "import caffe; print('caffe version: %s' % caffe.__version__)"
 
 echo "** Build and test SSD caffe successfully"
