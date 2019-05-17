@@ -1,0 +1,25 @@
+diff -Nrup a/tensorflow/contrib/lite/kernels/internal/BUILD b/tensorflow/contrib/lite/kernels/internal/BUILD
+--- a/tensorflow/contrib/lite/kernels/internal/BUILD	2019-05-17 14:02:19.855972274 +0800
++++ b/tensorflow/contrib/lite/kernels/internal/BUILD	2019-05-17 15:28:25.051970304 +0800
+@@ -21,7 +21,6 @@ HARD_FP_FLAGS_IF_APPLICABLE = select({
+ NEON_FLAGS_IF_APPLICABLE = select({
+     ":arm": [
+         "-O3",
+-        "-mfpu=neon",
+     ],
+     ":armeabi-v7a": [
+         "-O3",
+diff -Nrup a/third_party/aws.BUILD b/third_party/aws.BUILD
+--- a/third_party/aws.BUILD	2019-05-17 14:02:35.559972268 +0800
++++ b/third_party/aws.BUILD	2019-05-17 15:27:45.535970319 +0800
+@@ -24,7 +24,9 @@ cc_library(
+         "@org_tensorflow//tensorflow:raspberry_pi_armeabi": glob([
+             "aws-cpp-sdk-core/source/platform/linux-shared/*.cpp",
+         ]),
+-        "//conditions:default": [],
++        "//conditions:default": glob([
++            "aws-cpp-sdk-core/source/platform/linux-shared/*.cpp",
++        ]),
+     }) + glob([
+         "aws-cpp-sdk-core/include/**/*.h",
+         "aws-cpp-sdk-core/source/*.cpp",
