@@ -2,9 +2,6 @@
 
 set -e
 
-user="nvidia"
-passwd="nvidia"
-
 config_file=`pwd`/caffe/Makefile.config.nano
 folder=${HOME}/project
 mkdir -p $folder
