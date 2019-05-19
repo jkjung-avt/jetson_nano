@@ -11,7 +11,7 @@ To set Jetson Nano to 10W performance mode ([reference](https://devtalk.nvidia.c
    $ sudo jetson_clocks
    ```
 
-Here is a list of blog posts realted to the scipts in this repository:
+Here is a list of blog posts related to the scripts in this repository:
 
 * [Setting up Jetson Nano: The Basics](https://jkjung-avt.github.io/setting-up-nano/)
 * [Installing OpenCV 3.4.6 on Jetson Nano](https://jkjung-avt.github.io/opencv-on-nano/)
