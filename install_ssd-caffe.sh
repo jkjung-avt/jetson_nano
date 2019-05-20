@@ -3,8 +3,8 @@
 set -e
 
 config_file=`pwd`/caffe/Makefile.config.nano
-folder=${HOME}/project
-mkdir -p $folder
+project_folder =${HOME}/project
+mkdir -p $project_folder 
 
 echo "** Install requirements"
 sudo apt-get install -y libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-dev libhdf5-serial-dev protobuf-compiler
@@ -13,7 +13,7 @@ sudo apt-get install -y libgflags-dev libgoogle-glog-dev liblmdb-dev
 sudo apt-get install -y libatlas-base-dev libopenblas-dev
 
 echo "** Download SSD caffe"
-cd $folder
+cd $project_folder 
 git clone https://github.com/weiliu89/caffe.git ssd-caffe
 cd ssd-caffe
 git checkout ssd
