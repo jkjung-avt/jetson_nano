@@ -21,7 +21,7 @@ sudo pip3 install -U keras_preprocessing
 export LD_LIBRARY_PATH=/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
 
 echo "** Download and patch tensorflow-1.12.2"
-cd $folder
+pushd $folder
 if [ ! -f tensorflow-1.12.2.tar.gz ]; then
   wget https://github.com/tensorflow/tensorflow/archive/v1.12.2.tar.gz -O tensorflow-1.12.2.tar.gz
 fi
@@ -61,6 +61,8 @@ bazel-bin/tensorflow/tools/pip_package/build_pip_package wheel/tensorflow_pkg
 
 echo "** Install tensorflow-1.12.2"
 sudo pip3 install wheel/tensorflow_pkg/tensorflow-1.12.2-cp36-cp36m-linux_aarch64.whl
+
+popd
 python3 -c "import tensorflow as tf; print('tensorflow version: %s' % tf.__version__)"
 
 echo "** Build and install tensorflow-1.12.2 successfully"
