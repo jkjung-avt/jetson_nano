@@ -8,6 +8,11 @@ patch_path=$(dirname $script_path)/tensorflow/tensorflow-1.12.2.patch
 folder=${HOME}/src
 mkdir -p $folder
 
+if pip3 list | grep tensorflow > /dev/null; then
+  echo "ERROR: tensorflow is installed already"
+  exit
+fi
+
 if ! which bazel > /dev/null; then
   echo "ERROR: bazel has not been installled"
   exit
