@@ -27,5 +27,6 @@ cd protobuf-3.6.0/
 make
 make check
 sudo make install
+sudo ldconfig
 
 echo "** Build protobuf-3.6.0 successfully"
