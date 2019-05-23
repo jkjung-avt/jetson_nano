@@ -33,7 +33,8 @@ sudo apt-get install -y libtbb2 libtbb-dev libv4l-dev v4l-utils qv4l2 v4l2ucp
 sudo apt-get install -y libdc1394-22-dev libxine2-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
 # sudo apt-get install -y libjasper-dev
 sudo apt-get install -y libjpeg8-dev libjpeg-turbo8-dev libtiff-dev libpng-dev
-sudo apt-get install -y libxvidcore-dev libx264-dev libgtk-3-dev libatlas-base-dev libopenblas-dev gfortran
+sudo apt-get install -y libxvidcore-dev libx264-dev libgtk-3-dev
+sudo apt-get install -y libatlas-base-dev libopenblas-dev liblapack-dev liblapacke-dev gfortran
 sudo apt-get install -y qt5-default
 
 sudo apt-get install -y python2.7-dev python3.6-dev python3-testresources
