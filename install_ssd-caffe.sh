@@ -28,7 +28,7 @@ python3 setup.py build
 sudo python3 setup.py install
 popd
 pkgs=`sed 's/[>=<].*$//' python/requirements.txt | grep -v leveldb | grep -v pyyaml`
-for pkg in $pkgs; do sudo pip3 install -U $pkg; done
+for pkg in $pkgs; do sudo pip3 install $pkg; done
 
 echo "** Building caffe..."
 cp $config_file Makefile.config
