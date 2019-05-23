@@ -39,7 +39,7 @@ echo "** Configure and build tensorflow-1.12.2"
 export TMP=/tmp
 PYTHON_BIN_PATH=$(which python3) \
 PYTHON_LIB_PATH=$(python3 -c 'import site; print(site.getsitepackages()[0])') \
-TF_CUDA_COMPUTE_CAPABILITIES=5.3 \
+TF_CUDA_COMPUTE_CAPABILITIES=5.3,6.2,7.2 \
 TF_CUDA_VERSION=10.0 \
 TF_CUDA_CLANG=0 \
 TF_CUDNN_VERSION=7 \
