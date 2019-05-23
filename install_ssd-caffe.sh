@@ -3,7 +3,7 @@
 set -e
 
 config_file=`pwd`/caffe/Makefile.config.nano
-project_folder =${HOME}/project
+project_folder=${HOME}/project
 mkdir -p $project_folder 
 
 echo "** Install requirements"
