@@ -29,4 +29,15 @@ make check
 sudo make install
 sudo ldconfig
 
+echo "** Update python3 protobuf module"
+# remove old installation of python3 protobuf
+sudo pip3 uninstall -y protobuf
+sudo pip3 install Cython
+cd python/
+# force compilation with c++11 standard
+sed -i '205s/if v:/if True:/' setup.py
+python3 setup.py build --cpp_implementation
+python3 setup.py test --cpp_implementation
+sudo python3 setup.py install --cpp_implementation
+
 echo "** Build protobuf-3.6.0 successfully"
