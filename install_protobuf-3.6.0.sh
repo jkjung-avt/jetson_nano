@@ -30,7 +30,7 @@ sudo make install
 sudo ldconfig
 
 echo "** Update python3 protobuf module"
-# remove old installation of python3 protobuf
+# remove previous installation of python3 protobuf module
 sudo pip3 uninstall -y protobuf
 sudo pip3 install Cython
 cd python/
