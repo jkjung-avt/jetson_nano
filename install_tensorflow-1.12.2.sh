@@ -19,7 +19,8 @@ if ! which bazel > /dev/null; then
 fi
 
 echo "** Install requirements"
-sudo pip3 install -U pip six numpy wheel setuptools mock
+sudo apt-get install -y libhdf5-serial-dev hdf5-tools
+sudo pip3 install -U pip six numpy wheel setuptools mock h5py
 sudo pip3 install -U keras_applications
 sudo pip3 install -U keras_preprocessing
 
@@ -61,7 +62,11 @@ GCC_HOST_COMPILER_PATH=$(which gcc) \
 CC_OPT_FLAGS="-march=native" \
 TF_SET_ANDROID_WORKSPACE=0 \
     ./configure
-bazel build --config=opt --config=cuda --local_resources 3072,2.0,1.0  //tensorflow/tools/pip_package:build_pip_package
+bazel build --config=opt \
+	    --config=cuda \
+	    --local_ram_resources HOST_RAM*0.6 \
+	    --local_cpu_resources HOST_CPU*0.5 \
+            //tensorflow/tools/pip_package:build_pip_package
 bazel-bin/tensorflow/tools/pip_package/build_pip_package wheel/tensorflow_pkg
 
 echo "** Install tensorflow-1.12.2"
