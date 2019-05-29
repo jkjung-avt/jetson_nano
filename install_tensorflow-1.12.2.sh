@@ -5,6 +5,22 @@ set -e
 script_path=$(realpath $0)
 patch_path=$(dirname $script_path)/tensorflow/tensorflow-1.12.2.patch
 
+chip_id=$(cat /sys/module/tegra_fuse/parameters/tegra_chip_id)
+case ${chip_id} in
+  "33" )  # Nano and TX1
+    cuda_compute=5.3
+    ;;
+  "24" )  # TX2
+    cuda_compute=6.2
+    ;;
+  "25" )  # AGX Xavier
+    cuda_compute=7.2
+    ;;
+  * )     # default
+    cuda_compute=5.3,6.2,7.2
+    ;;
+esac
+
 folder=${HOME}/src
 mkdir -p $folder
 
@@ -40,7 +56,7 @@ echo "** Configure and build tensorflow-1.12.2"
 export TMP=/tmp
 PYTHON_BIN_PATH=$(which python3) \
 PYTHON_LIB_PATH=$(python3 -c 'import site; print(site.getsitepackages()[0])') \
-TF_CUDA_COMPUTE_CAPABILITIES=5.3,6.2,7.2 \
+TF_CUDA_COMPUTE_CAPABILITIES=${cuda_compute} \
 TF_CUDA_VERSION=10.0 \
 TF_CUDA_CLANG=0 \
 TF_CUDNN_VERSION=7 \
