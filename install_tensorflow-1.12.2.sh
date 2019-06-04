@@ -80,7 +80,7 @@ TF_SET_ANDROID_WORKSPACE=0 \
     ./configure
 bazel build --config=opt \
 	    --config=cuda \
-	    --local_resources=2560.0,2.0,1.0 \
+	    --local_resources=2048.0,1.0,1.0 \
             //tensorflow/tools/pip_package:build_pip_package
 bazel-bin/tensorflow/tools/pip_package/build_pip_package wheel/tensorflow_pkg
 
