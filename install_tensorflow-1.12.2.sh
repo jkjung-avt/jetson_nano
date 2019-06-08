@@ -85,7 +85,8 @@ bazel build --config=opt \
 bazel-bin/tensorflow/tools/pip_package/build_pip_package wheel/tensorflow_pkg
 
 echo "** Install tensorflow-1.12.2"
-sudo pip3 install wheel/tensorflow_pkg/tensorflow-1.12.2-cp36-cp36m-linux_aarch64.whl
+#sudo pip3 install wheel/tensorflow_pkg/tensorflow-1.12.2-cp36-cp36m-linux_aarch64.whl
+sudo pip3 install wheel/tensorflow_pkg/tensorflow-1.12.2-*.whl
 
 popd
 python3 -c "import tensorflow as tf; print('tensorflow version: %s' % tf.__version__)"
