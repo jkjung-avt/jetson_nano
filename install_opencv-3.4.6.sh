@@ -42,8 +42,10 @@ rm -f $folder/get-pip.py
 wget https://bootstrap.pypa.io/get-pip.py -O $folder/get-pip.py
 sudo python3 $folder/get-pip.py
 sudo python2 $folder/get-pip.py
-sudo pip3 install -U protobuf numpy matplotlib
-sudo pip2 install -U protobuf numpy matplotlib
+sudo pip3 install protobuf
+sudo pip2 install protobuf
+sudo pip3 install -U numpy matplotlib
+sudo pip2 install -U numpy matplotlib
 
 if [ ! -f /usr/local/cuda/include/cuda_gl_interop.h.bak ]; then
   sudo cp /usr/local/cuda/include/cuda_gl_interop.h /usr/local/cuda/include/cuda_gl_interop.h.bak
