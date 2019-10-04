@@ -3,7 +3,7 @@
 set -e
 
 script_path=$(realpath $0)
-#patch_path=$(dirname $script_path)/tensorflow/tensorflow-2.0.0.patch
+patch_path=$(dirname $script_path)/tensorflow/tensorflow-2.0.0.patch
 
 chip_id=$(cat /sys/module/tegra_fuse/parameters/tegra_chip_id)
 case ${chip_id} in
@@ -50,7 +50,7 @@ fi
 tar xzvf tensorflow-2.0.0.tar.gz
 cd tensorflow-2.0.0
 
-#patch -N -p1 < $patch_path && echo "tensorflow-2.0.0 source tree appears to be patched already.  Continue..."
+patch -N -p1 < $patch_path && echo "tensorflow-2.0.0 source tree appears to be patched already.  Continue..."
 
 echo "** Configure and build tensorflow-2.0.0"
 export TMP=/tmp
