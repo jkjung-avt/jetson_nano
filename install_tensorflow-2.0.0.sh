@@ -88,6 +88,6 @@ echo "** Install tensorflow-2.0.0"
 sudo pip3 install wheel/tensorflow_pkg/tensorflow-2.0.0-*.whl
 
 popd
-python3 -c "import tensorflow as tf; print('tensorflow version: %s' % tf.__version__)"
+TF_CPP_MIN_LOG_LEVEL=3 python3 -c "import tensorflow as tf; tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR); print('tensorflow version: %s' % tf.__version__); print('tensorflow.test.is_built_with_cuda(): %s' % tf.test.is_built_with_cuda()); print('tensorflow.test.is_gpu_available(): %s' % tf.test.is_gpu_available(cuda_only=False, min_cuda_compute_capability=None))"
 
 echo "** Build and install tensorflow-2.0.0 successfully"
