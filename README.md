@@ -15,3 +15,4 @@ Here is a list of blog posts related to the scripts in this repository:
 * [Installing OpenCV 3.4.6 on Jetson Nano](https://jkjung-avt.github.io/opencv-on-nano/)
 * [Installing and Testing SSD Caffe on Jetson Nano](https://jkjung-avt.github.io/ssd-caffe-on-nano/)
 * [Building TensorFlow 1.12.2 on Jetson Nano](https://jkjung-avt.github.io/build-tensorflow-1.12.2/)
+* [Building TensorFlow 2.0.0 on Jetson Nano](https://jkjung-avt.github.io/build-tensorflow-2.0.0/)
