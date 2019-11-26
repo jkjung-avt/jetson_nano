@@ -19,6 +19,24 @@
 
 set -e
 
+chip_id=$(cat /sys/module/tegra_fuse/parameters/tegra_chip_id)
+case ${chip_id} in
+  "33" )  # Nano and TX1
+    cuda_compute=5.3
+    ;;
+  "24" )  # TX2
+    cuda_compute=6.2
+    ;;
+  "25" )  # AGX Xavier
+    cuda_compute=7.2
+    ;;
+  * )     # default
+    cuda_compute=5.3,6.2,7.2
+    ;;
+esac
+
+py3_ver=$(python3 -c "import sys; print(sys.version_info[1])")
+
 folder=${HOME}/src
 mkdir -p $folder
 
@@ -37,7 +55,7 @@ sudo apt-get install -y libxvidcore-dev libx264-dev libgtk-3-dev
 sudo apt-get install -y libatlas-base-dev libopenblas-dev liblapack-dev liblapacke-dev gfortran
 sudo apt-get install -y qt5-default
 
-sudo apt-get install -y python2.7-dev python3.6-dev python3-testresources
+sudo apt-get install -y python2.7-dev python3.${py3_ver}-dev python3-testresources
 rm -f $folder/get-pip.py
 wget https://bootstrap.pypa.io/get-pip.py -O $folder/get-pip.py
 sudo python3 $folder/get-pip.py
@@ -50,7 +68,7 @@ sudo pip2 install -U numpy matplotlib
 if [ ! -f /usr/local/cuda/include/cuda_gl_interop.h.bak ]; then
   sudo cp /usr/local/cuda/include/cuda_gl_interop.h /usr/local/cuda/include/cuda_gl_interop.h.bak
 fi
-sudo patch -N /usr/local/cuda/include/cuda_gl_interop.h < opencv/cuda_gl_interop.h.patch && echo "** '/usr/local/cuda/include/cuda_gl_interop.h' appears to be patched already.  Continue..."
+sudo patch -N -r - /usr/local/cuda/include/cuda_gl_interop.h < opencv/cuda_gl_interop.h.patch && echo "** '/usr/local/cuda/include/cuda_gl_interop.h' appears to be patched already.  Continue..."
 
 echo "** Download opencv-3.4.6"
 cd $folder
@@ -68,7 +86,13 @@ echo "** Building opencv..."
 mkdir build
 cd build/
 
-cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D WITH_CUDA=ON -D CUDA_ARCH_BIN="5.3" -D CUDA_ARCH_PTX="" -D WITH_CUBLAS=ON -D ENABLE_FAST_MATH=ON -D CUDA_FAST_MATH=ON -D ENABLE_NEON=ON -D WITH_GSTREAMER=ON -D WITH_LIBV4L=ON -D BUILD_opencv_python2=ON -D BUILD_opencv_python3=ON -D BUILD_TESTS=OFF -D BUILD_PERF_TESTS=OFF -D BUILD_EXAMPLES=OFF -D WITH_QT=ON -D WITH_OPENGL=ON ..
+cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local \
+      -D WITH_CUDA=ON -D CUDA_ARCH_BIN=${cuda_compute} -D CUDA_ARCH_PTX="" \
+      -D WITH_CUBLAS=ON -D ENABLE_FAST_MATH=ON -D CUDA_FAST_MATH=ON \
+      -D ENABLE_NEON=ON -D WITH_GSTREAMER=ON -D WITH_LIBV4L=ON \
+      -D BUILD_opencv_python2=ON -D BUILD_opencv_python3=ON \
+      -D BUILD_TESTS=OFF -D BUILD_PERF_TESTS=OFF -D BUILD_EXAMPLES=OFF \
+      -D WITH_QT=ON -D WITH_OPENGL=ON ..
 make -j3
 sudo make install
 sudo ldconfig
