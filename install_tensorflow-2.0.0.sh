@@ -9,15 +9,19 @@ chip_id=$(cat /sys/module/tegra_fuse/parameters/tegra_chip_id)
 case ${chip_id} in
   "33" )  # Nano and TX1
     cuda_compute=5.3
+    local_resources=2048.0,1.0,1.0
     ;;
   "24" )  # TX2
     cuda_compute=6.2
+    local_resources=6144.0,6.0,1.0
     ;;
   "25" )  # AGX Xavier
     cuda_compute=7.2
+    local_resources=8192.0,16.0,1.0
     ;;
   * )     # default
     cuda_compute=5.3,6.2,7.2
+    local_resources=2048.0,1.0,1.0
     ;;
 esac
 
@@ -79,7 +83,7 @@ TF_SET_ANDROID_WORKSPACE=0 \
     ./configure
 bazel build --config=opt \
 	    --config=cuda \
-	    --local_resources=2048.0,1.0,1.0 \
+	    --local_resources=${local_resources} \
             //tensorflow/tools/pip_package:build_pip_package
 bazel-bin/tensorflow/tools/pip_package/build_pip_package wheel/tensorflow_pkg
 
