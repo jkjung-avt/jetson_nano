@@ -55,7 +55,7 @@ sudo apt-get install -y libxvidcore-dev libx264-dev libgtk-3-dev
 sudo apt-get install -y libatlas-base-dev libopenblas-dev liblapack-dev liblapacke-dev gfortran
 sudo apt-get install -y qt5-default
 
-sudo apt-get install -y python2.7-dev python3.${py3_ver}-dev python3-testresources
+sudo apt-get install -y python2-dev python3-dev python3-testresources
 rm -f $folder/get-pip.py
 wget https://bootstrap.pypa.io/get-pip.py -O $folder/get-pip.py
 sudo python3 $folder/get-pip.py
