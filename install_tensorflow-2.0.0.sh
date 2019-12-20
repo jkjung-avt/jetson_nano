@@ -4,6 +4,7 @@ set -e
 
 script_path=$(realpath $0)
 patch_path=$(dirname $script_path)/tensorflow/tensorflow-2.0.0.patch
+trt_version=$(echo /usr/lib/aarch64-linux-gnu/libnvinfer.so.? | cut -d '.' -f 3)
 
 chip_id=$(cat /sys/module/tegra_fuse/parameters/tegra_chip_id)
 case ${chip_id} in
@@ -64,7 +65,7 @@ TF_CUDA_COMPUTE_CAPABILITIES=${cuda_compute} \
 TF_CUDA_VERSION=10.0 \
 TF_CUDA_CLANG=0 \
 TF_CUDNN_VERSION=7 \
-TF_TENSORRT_VERSION=5 \
+TF_TENSORRT_VERSION=${trt_version} \
 CUDA_TOOLKIT_PATH=/usr/local/cuda \
 CUDNN_INSTALL_PATH=/usr/lib/aarch64-linux-gnu \
 TENSORRT_INSTALL_PATH=/usr/lib/aarch64-linux-gnu \
