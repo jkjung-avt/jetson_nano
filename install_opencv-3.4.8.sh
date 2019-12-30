@@ -55,15 +55,12 @@ sudo apt-get install -y libxvidcore-dev libx264-dev libgtk-3-dev
 sudo apt-get install -y libatlas-base-dev libopenblas-dev liblapack-dev liblapacke-dev gfortran
 sudo apt-get install -y qt5-default
 
-sudo apt-get install -y python2-dev python3-dev python3-testresources
+sudo apt-get install -y python3-dev python3-testresources
 rm -f $folder/get-pip.py
 wget https://bootstrap.pypa.io/get-pip.py -O $folder/get-pip.py
 sudo python3 $folder/get-pip.py
-#sudo python2 $folder/get-pip.py
 sudo pip3 install protobuf
-#sudo pip2 install protobuf
 sudo pip3 install -U numpy matplotlib
-#sudo pip2 install -U numpy matplotlib
 
 if [ ! -f /usr/local/cuda/include/cuda_gl_interop.h.bak ]; then
   sudo cp /usr/local/cuda/include/cuda_gl_interop.h /usr/local/cuda/include/cuda_gl_interop.h.bak
@@ -99,6 +96,5 @@ sudo make install
 sudo ldconfig
 
 python3 -c 'import cv2; print("python3 cv2 version: %s" % cv2.__version__)'
-#python2 -c 'import cv2; print("python2 cv2 version: %s" % cv2.__version__)'
 
 echo "** Install opencv-3.4.8 successfully"
