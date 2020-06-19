@@ -5,6 +5,9 @@ set -e
 folder=${HOME}/src
 mkdir -p $folder
 
+echo "** Install requirements"
+sudo apt-get install -y autoconf libtool
+
 echo "** Download protobuf-3.6.1 sources"
 cd $folder
 if [ ! -f protobuf-python-3.6.1.zip ]; then
