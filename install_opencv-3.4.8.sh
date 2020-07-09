@@ -91,7 +91,7 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local \
       -D BUILD_opencv_python2=OFF -D BUILD_opencv_python3=ON \
       -D BUILD_TESTS=OFF -D BUILD_PERF_TESTS=OFF -D BUILD_EXAMPLES=OFF \
       -D WITH_QT=ON -D WITH_OPENGL=ON ..
-make -j3
+make -j$(nproc)
 sudo make install
 sudo ldconfig
 

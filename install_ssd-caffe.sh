@@ -32,7 +32,7 @@ for pkg in $pkgs; do sudo pip3 install $pkg; done
 
 echo "** Building caffe..."
 cp $config_file Makefile.config
-make -j3 all test pycaffe
+make -j$(nproc) all test pycaffe
 
 # NOTE: runtest fails on Jetson Nano due to out of memory
 # make runtest
