@@ -27,7 +27,7 @@ export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=cpp
 cd protobuf-3.8.0/
 ./autogen.sh
 ./configure --prefix=/usr/local
-make
+make -j$(nproc)
 make check
 sudo make install
 sudo ldconfig
