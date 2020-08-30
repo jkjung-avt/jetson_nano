@@ -1,6 +1,6 @@
 # jetson_nano
 
-This repository holds the scripts/programs I use to set up the software development environment on my Jetson Nano.
+This repository is a collection of scripts/programs I use to set up the software development environment on my Jetson Nano, TX2, and Xavier NX.
 
 To set Jetson Nano to 10W performance mode ([reference](https://devtalk.nvidia.com/default/topic/1050377/jetson-nano/deep-learning-inference-benchmarking-instructions/)), execute the following from a terminal:
 
