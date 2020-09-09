@@ -9,7 +9,7 @@ To set Jetson Nano to 10W performance mode ([reference](https://devtalk.nvidia.c
    $ sudo jetson_clocks
    ```
 
-Here is a list of blog posts related to the scripts in this repository:
+These are my blog posts related to the scripts in this repository:
 
 * [Setting up Jetson Nano: The Basics](https://jkjung-avt.github.io/setting-up-nano/)
 * [Installing OpenCV 3.4.6 on Jetson Nano](https://jkjung-avt.github.io/opencv-on-nano/)
@@ -19,3 +19,12 @@ Here is a list of blog posts related to the scripts in this repository:
 * [JetPack-4.3 for Jetson Nano](https://jkjung-avt.github.io/jetpack-4.3/)
 * [JetPack-4.4 for Jetson Nano](https://jkjung-avt.github.io/jetpack-4.4/)
 * [Setting up Jetson Xavier NX](https://jkjung-avt.github.io/setting-up-xavier-nx/)
+
+And here is a list of TensorFlow versions with the corresponding bazel and protobuf versions:
+
+| tensorflow |  bazel | protobuf |  Tested on  |
+|:----------:|:------:|:--------:|:-----------:|
+|   1.12.2   | 0.15.2 |   3.6.1  | JetPack-4.2 |
+|   1.15.0   | 0.26.1 |   3.8.0  | JetPack-4.3 |
+|    2.0.0   | 0.26.1 |   3.8.0  | JetPack-4.3 |
+|    2.3.0   |  3.1.0 |   3.8.0  | JetPack-4.4 |
