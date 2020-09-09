@@ -84,6 +84,7 @@ TF_SET_ANDROID_WORKSPACE=0 \
     ./configure
 bazel build --config=opt \
             --config=cuda \
+            --config=noaws \
             --local_cpu_resources=HOST_CPUS*0.5 \
             --local_ram_resources=HOST_RAM*0.75 \
             //tensorflow/tools/pip_package:build_pip_package
