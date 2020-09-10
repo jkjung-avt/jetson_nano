@@ -1,6 +1,27 @@
+diff -Nrup a/tensorflow/python/lib/core/bfloat16.cc b/tensorflow/python/lib/core/bfloat16.cc
+--- a/tensorflow/python/lib/core/bfloat16.cc	2020-09-10 14:40:48.776000000 +0800
++++ b/tensorflow/python/lib/core/bfloat16.cc	2020-09-10 14:44:55.500000000 +0800
+@@ -517,7 +517,7 @@ bool RegisterBfloat16Cast(int numpy_type
+ }
+ 
+ template <typename InType, typename OutType, typename Functor>
+-void BinaryUFunc(char** args, npy_intp* dimensions, npy_intp* steps,
++void BinaryUFunc(char** args, npy_intp const* dimensions, npy_intp const* steps,
+                  void* data) {
+   const char* i0 = args[0];
+   const char* i1 = args[1];
+@@ -533,7 +533,7 @@ void BinaryUFunc(char** args, npy_intp*
+ }
+ 
+ template <typename Functor>
+-void CompareUFunc(char** args, npy_intp* dimensions, npy_intp* steps,
++void CompareUFunc(char** args, npy_intp const* dimensions, npy_intp const* steps,
+                   void* data) {
+   BinaryUFunc<bfloat16, npy_bool, Functor>(args, dimensions, steps, data);
+ }
 diff -Nrup a/third_party/nccl/build_defs.bzl.tpl b/third_party/nccl/build_defs.bzl.tpl
---- a/third_party/nccl/build_defs.bzl.tpl	2020-09-09 18:48:11.276000000 +0800
-+++ b/third_party/nccl/build_defs.bzl.tpl	2020-09-09 18:49:08.448000000 +0800
+--- a/third_party/nccl/build_defs.bzl.tpl	2020-09-10 14:39:56.212000000 +0800
++++ b/third_party/nccl/build_defs.bzl.tpl	2020-09-10 14:39:27.760000000 +0800
 @@ -40,7 +40,7 @@ def _rdc_copts():
      # The global functions can not have a lower register count than the
      # device functions. This is enforced by setting a fixed register count.

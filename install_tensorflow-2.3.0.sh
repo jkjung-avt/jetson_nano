@@ -41,9 +41,9 @@ fi
 
 echo "** Install requirements"
 sudo apt-get install -y libhdf5-serial-dev hdf5-tools
-sudo pip3 install -U pip six numpy wheel setuptools mock h5py
-sudo pip3 install -U keras_applications
-sudo pip3 install -U keras_preprocessing
+sudo pip3 install -U pip six 'numpy<1.19.0' wheel setuptools mock 'future>=0.17.1' 'gast==0.3.3' typing_extensions h5py
+sudo pip3 install -U keras_applications --no-deps
+sudo pip3 install -U keras_preprocessing --no-deps
 
 export LD_LIBRARY_PATH=/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
 
@@ -85,8 +85,8 @@ TF_SET_ANDROID_WORKSPACE=0 \
 bazel build --config=opt \
             --config=cuda \
             --config=noaws \
-            --local_cpu_resources=HOST_CPUS*0.5 \
-            --local_ram_resources=HOST_RAM*0.75 \
+            --local_cpu_resources=HOST_CPUS*0.25 \
+            --local_ram_resources=HOST_RAM*0.5 \
             //tensorflow/tools/pip_package:build_pip_package
 bazel-bin/tensorflow/tools/pip_package/build_pip_package wheel/tensorflow_pkg
 
