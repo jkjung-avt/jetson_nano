@@ -1,3 +1,39 @@
+diff -Nrup a/tensorflow/python/lib/core/bfloat16.cc b/tensorflow/python/lib/core/bfloat16.cc
+--- a/tensorflow/python/lib/core/bfloat16.cc	2020-09-11 15:47:48.636000000 +0800
++++ b/tensorflow/python/lib/core/bfloat16.cc	2020-09-11 15:50:34.264000000 +0800
+@@ -660,26 +660,26 @@ bool Initialize() {
+   const std::array<int, 3> compare_types = {
+       {npy_bfloat16_, npy_bfloat16_, NPY_BOOL}};
+ 
+-  if (!register_ufunc("equal", CompareUFunc<Bfloat16EqFunctor>,
++  if (!register_ufunc("equal", (PyUFuncGenericFunction) CompareUFunc<Bfloat16EqFunctor>,
+                       compare_types)) {
+     return false;
+   }
+-  if (!register_ufunc("not_equal", CompareUFunc<Bfloat16NeFunctor>,
++  if (!register_ufunc("not_equal", (PyUFuncGenericFunction) CompareUFunc<Bfloat16NeFunctor>,
+                       compare_types)) {
+     return false;
+   }
+-  if (!register_ufunc("less", CompareUFunc<Bfloat16LtFunctor>, compare_types)) {
++  if (!register_ufunc("less", (PyUFuncGenericFunction) CompareUFunc<Bfloat16LtFunctor>, compare_types)) {
+     return false;
+   }
+-  if (!register_ufunc("greater", CompareUFunc<Bfloat16GtFunctor>,
++  if (!register_ufunc("greater", (PyUFuncGenericFunction) CompareUFunc<Bfloat16GtFunctor>,
+                       compare_types)) {
+     return false;
+   }
+-  if (!register_ufunc("less_equal", CompareUFunc<Bfloat16LeFunctor>,
++  if (!register_ufunc("less_equal", (PyUFuncGenericFunction) CompareUFunc<Bfloat16LeFunctor>,
+                       compare_types)) {
+     return false;
+   }
+-  if (!register_ufunc("greater_equal", CompareUFunc<Bfloat16GeFunctor>,
++  if (!register_ufunc("greater_equal", (PyUFuncGenericFunction) CompareUFunc<Bfloat16GeFunctor>,
+                       compare_types)) {
+     return false;
+   }
 diff -Nrup a/third_party/nccl/build_defs.bzl.tpl b/third_party/nccl/build_defs.bzl.tpl
 --- a/third_party/nccl/build_defs.bzl.tpl	2020-09-10 14:39:56.212000000 +0800
 +++ b/third_party/nccl/build_defs.bzl.tpl	2020-09-10 14:39:27.760000000 +0800
