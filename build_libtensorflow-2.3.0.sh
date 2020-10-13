@@ -82,6 +82,7 @@ GCC_HOST_COMPILER_PATH=$(which gcc) \
 CC_OPT_FLAGS="-march=native" \
 TF_SET_ANDROID_WORKSPACE=0 \
     ./configure
+
 bazel build --config=opt \
             --config=v2 \
             --config=cuda \
@@ -89,13 +90,5 @@ bazel build --config=opt \
             --local_cpu_resources=HOST_CPUS*0.25 \
             --local_ram_resources=HOST_RAM*0.5 \
             //tensorflow/tools/lib_package:libtensorflow
-
-echo "** Install tensorflow-2.3.0"
-#sudo pip3 install wheel/tensorflow_pkg/tensorflow-2.3.0-cp36-cp36m-linux_aarch64.whl
-sudo pip3 install wheel/tensorflow_pkg/tensorflow-2.3.0-*.whl
-
-popd
-
-TF_CPP_MIN_LOG_LEVEL=3 python3 -c "import tensorflow as tf; tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR); print('tensorflow version: %s' % tf.__version__); print('tensorflow.test.is_built_with_cuda(): %s' % tf.test.is_built_with_cuda()); print('tensorflow.test.is_gpu_available(): %s' % tf.test.is_gpu_available(cuda_only=False, min_cuda_compute_capability=None))"
 
 echo "** Build and install tensorflow-2.3.0 successfully"
