@@ -57,7 +57,7 @@ cd tensorflow-2.3.0
 
 patch -N -p1 < $patch_path && echo "tensorflow-2.3.0 source tree appears to be patched already.  Continue..."
 
-echo "** Configure and build tensorflow-2.3.0"
+echo "** Configure and build libtensorflow-2.3.0"
 export TMP=/tmp
 PYTHON_BIN_PATH=$(which python3) \
 PYTHON_LIB_PATH=$(python3 -c 'import site; print(site.getsitepackages()[0])') \
@@ -91,4 +91,4 @@ bazel build --config=opt \
             --local_ram_resources=HOST_RAM*0.5 \
             //tensorflow/tools/lib_package:libtensorflow
 
-echo "** Build and install tensorflow-2.3.0 successfully"
+echo "** Build libtensorflow-2.3.0 successfully"
