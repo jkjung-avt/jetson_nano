@@ -2,7 +2,7 @@
 
 set -e
 
-if [[ $(head -1 /etc/nv_tegra_release) != *"R32 (release), REVISION: 4.3"* ]] ; then
+if [[ $(head -1 /etc/nv_tegra_release) != *"R32 (release), REVISION: 4.4"* ]] ; then
   echo "ERROR: not JetPack-4.4"
   exit 1
 fi
