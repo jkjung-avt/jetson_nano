@@ -11,6 +11,7 @@ To set Jetson Nano to 10W (MAXN) performance mode ([reference](https://devtalk.n
 
 These are my blog posts related to the scripts in this repository:
 
+* [JetPack-4.6](https://jkjung-avt.github.io/jetpack-4.6/)
 * [JetPack-4.5](https://jkjung-avt.github.io/jetpack-4.5/)
 * [Setting up Jetson Xavier NX](https://jkjung-avt.github.io/setting-up-xavier-nx/)
 * [JetPack-4.4 for Jetson Nano](https://jkjung-avt.github.io/jetpack-4.4/)
